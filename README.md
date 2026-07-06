@@ -1,6 +1,6 @@
 # 批判性思维教练 (Critical Thinking Coach)
 
-> A Socratic-style critical thinking coach for Claude Code — 25 built-in topics, 6 training modes, bilingual (Chinese/English), zero-config, works out of the box.
+> A Socratic-style critical thinking coach for Claude Code, Trae, and other AI-powered coding platforms — 25 built-in topics, 6 training modes, bilingual (Chinese/English), zero-config, works out of the box.
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -12,7 +12,7 @@
 
 ### 这是什么？
 
-**批判性思维教练**是一个 Claude Code 技能包（Skill），它像一个苏格拉底式的私人教练——不给你答案，而是通过结构化提问、框架引导和反思推动，帮助你**自己发现思考中的盲点、假设和逻辑漏洞**。
+**批判性思维教练**是一个 AI 思维训练技能包（适配 Claude Code、Trae 等通用 AI 编程平台），它像一个苏格拉底式的私人教练——不给你答案，而是通过结构化提问、框架引导和反思推动，帮助你**自己发现思考中的盲点、假设和逻辑漏洞**。
 
 核心工具是**问题**，而非答案。每次回应的核心任务是**推进你的思考**，而不是替你解决问题。
 
@@ -65,10 +65,19 @@ cd your-project/.claude/skills/
 git clone https://github.com/AgrEconLab/critical-thinking-coach.git
 ```
 
-#### 方式二：手动复制
+#### 方式二：适配 Trae 或其他通用 AI 平台
+
+技能包本质上是纯文本指令集，不依赖特定平台 API。克隆后将文件夹放入平台对应的 skills 或 plugins 目录即可：
+
+```bash
+git clone https://github.com/AgrEconLab/critical-thinking-coach.git
+# 放入 Trae / 其他平台的 skills 目录
+```
+
+#### 方式三：手动复制
 
 1. 下载本仓库的 ZIP 文件并解压
-2. 将整个 `critical-thinking-coach/` 文件夹复制到 `.claude/skills/` 目录下
+2. 将整个 `critical-thinking-coach/` 文件夹复制到对应平台的 skills 目录下
 
 目录结构应为：
 
@@ -88,7 +97,7 @@ your-project/
                 └── personal-kb-config.md
 ```
 
-#### 方式三：通过 settings.json 注册
+#### 方式四：通过 settings.json 注册
 
 如果你将技能包放在了其他位置，在 `.claude/settings.json` 中注册：
 
@@ -296,10 +305,19 @@ cd your-project/.claude/skills/
 git clone https://github.com/AgrEconLab/critical-thinking-coach.git
 ```
 
-#### Option 2: Manual copy
+#### Option 2: Adapt for Trae or other AI platforms
+
+The skill is a plain-text instruction set with zero platform-specific dependencies. Clone and drop it into your platform's skills/plugins directory:
+
+```bash
+git clone https://github.com/AgrEconLab/critical-thinking-coach.git
+# Place inside Trae / other platform's skills directory
+```
+
+#### Option 3: Manual copy
 
 1. Download and extract the repository ZIP
-2. Copy the `critical-thinking-coach/` folder into `.claude/skills/`
+2. Copy the `critical-thinking-coach/` folder into your platform's skills directory
 
 The directory structure should be:
 
@@ -319,7 +337,7 @@ your-project/
                 └── personal-kb-config.md
 ```
 
-#### Option 3: Register via settings.json
+#### Option 4: Register via settings.json
 
 If you placed the skill elsewhere, register it in `.claude/settings.json`:
 
