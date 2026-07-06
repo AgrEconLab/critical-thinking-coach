@@ -220,7 +220,7 @@ critical-thinking-coach/
 │   ├── logical-fallacies.md         # 常见逻辑谬误速查表（5 类）
 │   └── personal-kb-config.md        # 个人知识库配置模板（预留扩展）
 └── evals/
-    └── evals.json                   # 测试用例（8 个）
+    └── evals.json                   # 测试用例（15 个）
 ```
 
 ### 常见问题
@@ -459,7 +459,7 @@ critical-thinking-coach/
 │   ├── logical-fallacies.md         # Logical fallacies cheat sheet (5 categories)
 │   └── personal-kb-config.md        # Personal knowledge base config template (reserved)
 └── evals/
-    └── evals.json                   # Test cases (8 cases)
+    └── evals.json                   # Test cases (15 cases)
 ```
 
 ### FAQ

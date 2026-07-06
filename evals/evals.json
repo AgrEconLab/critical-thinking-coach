@@ -102,6 +102,98 @@
         "AI 在用户切换为英文后以英文回应",
         "AI 保持教练姿态，不分心评论语言切换"
       ]
+    },
+    {
+      "id": "mode-routing-003",
+      "category": "mode_routing",
+      "description": "模式 1 路由：论证解剖",
+      "input": "帮我分析一下这个论证是否站得住脚：因为最低工资上涨后企业用工成本增加，所以最低工资必然导致大规模失业。",
+      "expected_mode": "论证解剖",
+      "assertions": [
+        "AI 确认论证解剖模式",
+        "AI 从第1层（明确论证结构）开始追问",
+        "AI 不直接评判论证对错"
+      ]
+    },
+    {
+      "id": "mode-routing-004",
+      "category": "mode_routing",
+      "description": "模式 2 路由：苏格拉底对话",
+      "input": "我认为自由贸易对所有国家都有好处，这是经济学的基本原理。你能挑战一下我的观点吗？",
+      "expected_mode": "苏格拉底对话",
+      "assertions": [
+        "AI 确认苏格拉底对话模式",
+        "AI 从回合 1（澄清概念）开始追问",
+        "AI 不以驳倒用户为目标"
+      ]
+    },
+    {
+      "id": "mode-routing-005",
+      "category": "mode_routing",
+      "description": "模式 4 路由：决策思辨",
+      "input": "我在纠结要不要辞职去读博，已经在这个单位工作了三年。帮我系统地分析一下这个决策。",
+      "expected_mode": "决策思辨",
+      "assertions": [
+        "AI 确认决策思辨模式",
+        "AI 从第1层（明确决策和备选方案）开始追问",
+        "AI 识别出沉没成本（三年资历）可能影响判断"
+      ]
+    },
+    {
+      "id": "mode-routing-006",
+      "category": "mode_routing",
+      "description": "模式 6 路由：类比推理检验",
+      "input": "我觉得AI监管就像给汽车装限速器一样，只会阻碍技术进步。这个类比对吗？",
+      "expected_mode": "类比推理检验",
+      "assertions": [
+        "AI 确认类比推理检验模式",
+        "AI 从第1层（明确类比维度）开始追问",
+        "AI 检验相似性和关键差异，而非直接否定类比"
+      ]
+    },
+    {
+      "id": "domain-001",
+      "category": "domain_lens",
+      "description": "学科视角叠加：经济学背景用户 + 因果推理考察",
+      "input": "我是经济学专业的。帮我评估'提高最低工资不会减少就业'这个因果主张。",
+      "expected_mode": "因果推理考察",
+      "assertions": [
+        "AI 使用因果推理考察通用框架",
+        "AI 叠加经济学视角专属追问（如识别策略 RCT/DID/RDD/IV）",
+        "AI 不在用户未表明背景时默认使用经济学追问"
+      ]
+    },
+    {
+      "id": "antipattern-001",
+      "category": "antipattern",
+      "description": "反模式预防：用户直接问结论 → AI 不直接给答案",
+      "input": "你觉得'屏幕时间导致青少年抑郁'这个说法对吗？到底是真是假？",
+      "expected": "socratic_response_not_direct_answer",
+      "assertions": [
+        "AI 以教练身份回应，不直接评判说法的对错",
+        "AI 反问澄清（如'你看到的这个说法，具体是来自什么渠道？'）或确认模式",
+        "AI 不输出类似'这个说法有一定道理但证据不足'的直接结论"
+      ]
+    },
+    {
+      "id": "workflow-001",
+      "category": "workflow",
+      "description": "完整四阶段流程：从触发到元认知反思",
+      "input_history": [
+        "帮我分析'消费者是理性的'这个假设是否站得住脚",
+        "（AI 按论证解剖模式追问多轮）",
+        "我意识到我的论证里面把规范性陈述和实证性陈述混在一起了",
+        "（AI 追问前提和证据层）",
+        "现在看来我需要把结论限定在有充分信息的理性消费者这个更窄的范围"
+      ],
+      "input": "我觉得经过这些追问，我对这个论证有了更清晰的认识。我们能总结一下吗？",
+      "expected": "stage_3_metacognitive_reflection",
+      "assertions": [
+        "AI 识别对话已到自然收束点",
+        "AI 进入阶段 3（元认知反思）引导用户回顾思考过程",
+        "AI 询问'最初的观点是什么？现在有什么变化？'等反思问题",
+        "AI 在用户确认后可进入阶段 4（评估与拓展）"
+      ]
     }
   ]
 }
