@@ -1,0 +1,107 @@
+{
+  "skill": "critical-thinking-coach",
+  "version": "1.0.0",
+  "updated": "2026-07-06",
+  "test_cases": [
+    {
+      "id": "trigger-001",
+      "category": "trigger_accuracy",
+      "description": "正例：明确请求批判性思维训练 → 应触发",
+      "input": "帮我分析一下这个论证是否正确：因为大多数成功企业家都辍学了，所以大学教育对创业没用。",
+      "expected": "triggered",
+      "expected_mode": "论证解剖",
+      "assertions": [
+        "AI 以教练身份回应",
+        "AI 展示六种模式或直接进入论证解剖",
+        "AI 不直接评判论证对错"
+      ]
+    },
+    {
+      "id": "trigger-002",
+      "category": "trigger_accuracy",
+      "description": "反例：纯编程任务 → 不应触发",
+      "input": "帮我写一个Python脚本来处理CSV数据",
+      "expected": "not_triggered",
+      "assertions": [
+        "AI 不进入批判性思维教练模式",
+        "AI 直接处理编程任务"
+      ]
+    },
+    {
+      "id": "trigger-003",
+      "category": "trigger_accuracy",
+      "description": "反例：直接问答 → 不应触发",
+      "input": "中国的GDP是多少？",
+      "expected": "not_triggered",
+      "assertions": [
+        "AI 不进入批判性思维教练模式",
+        "AI 直接回答问题"
+      ]
+    },
+    {
+      "id": "mode-routing-001",
+      "category": "mode_routing",
+      "description": "模式 3 路由：因果推理考察",
+      "input": "评估'屏幕时间导致青少年抑郁'这个因果主张，我想看看证据链是否可靠。",
+      "expected_mode": "因果推理考察",
+      "assertions": [
+        "AI 确认因果推理考察模式",
+        "AI 从第1层（明确因果主张）开始追问",
+        "AI 不跳过确认门"
+      ]
+    },
+    {
+      "id": "mode-routing-002",
+      "category": "mode_routing",
+      "description": "模式 5 路由：信源可信度审查",
+      "input": "这条新闻说喝咖啡能防癌，靠谱吗？我想审查一下这个消息的可信度。",
+      "expected_mode": "信源可信度审查",
+      "assertions": [
+        "AI 从溯源（第1层）开始追问",
+        "AI 不直接告诉用户结论"
+      ]
+    },
+    {
+      "id": "edge-001",
+      "category": "edge_case",
+      "description": "边界：用户无自带话题 → 展示预置题库",
+      "input": "我想训练批判性思维，但我不知道从哪开始",
+      "expected": "topic_bank_presented",
+      "assertions": [
+        "AI 先展示六种模式让用户选择",
+        "用户选模式后，若仍无话题，从日常生活类题库推荐",
+        "AI 让用户从推荐话题中选择，而非替用户决定"
+      ]
+    },
+    {
+      "id": "edge-002",
+      "category": "edge_case",
+      "description": "边界：中途模式切换 → 确认门 + 不重复内容",
+      "input_history": [
+        "我认为最低工资一定会导致失业",
+        "（AI 追问几轮后）"
+      ],
+      "input": "我发现在刚才的推理中，我的因果逻辑可能有漏洞，能帮我系统拆解一下吗？",
+      "expected": "mode_switch_with_confirmation",
+      "assertions": [
+        "AI 简短总结苏格拉底对话的收获",
+        "AI 建议切换到论证解剖模式并请求确认",
+        "AI 不让用户重复已表述的内容"
+      ]
+    },
+    {
+      "id": "edge-003",
+      "category": "edge_case",
+      "description": "边界：语言切换 → AI 跟随",
+      "input_sequence": [
+        "我想训练批判性思维，帮我分析一个论证",
+        "Actually, let me switch to English. I want to analyze the claim that 'social media causes depression'."
+      ],
+      "expected": "language_follow",
+      "assertions": [
+        "AI 在用户切换为英文后以英文回应",
+        "AI 保持教练姿态，不分心评论语言切换"
+      ]
+    }
+  ]
+}
