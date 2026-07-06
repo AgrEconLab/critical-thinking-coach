@@ -15,5 +15,8 @@ __pycache__/
 # Node
 node_modules/
 
+# Promotional materials (excluded from repo)
+promo-blog.md
+
 # Claude Code
 .claude/
